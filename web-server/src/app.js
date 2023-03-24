@@ -170,3 +170,46 @@ app.get("/products", (req, res) => {
 app.listen(3000, () => {
   console.log(`Server is up on port 3000`);
 });
+
+
+
+ jQuery(window).on('load', function() {
+        if (jQuery('#sticky-leftbar').length) {
+            var socialTop = jQuery('#sticky-leftbar').offset().top;
+            var footerTop = jQuery('.site-footer').offset().top - 50;
+            // console.log('footerTop');
+            var site_header = jQuery("#main-nav").innerHeight() + 40;
+            // console.log(jQuery("#main-nav").innerHeight());
+            jQuery(window).scroll(function() {
+                var currentScroll = jQuery(window).scrollTop();
+                // console.log(socialTop, "socialTop");
+                console.log(currentScroll, "currentScroll");
+                console.log(footerTop, "footerTop");
+
+                if ((currentScroll >= socialTop) && (currentScroll <= footerTop)) {
+                    jQuery('#sticky-leftbar').css({
+                        position: 'sticky',
+                        top: (site_header) + 'px',
+                        width: '100%',
+                        transition: '0.3s linear'
+                    });
+                    if (currentScroll === Math.trunc(socialTop)) {
+                        $('#collapseOne0').removeClass('show');
+                       
+                    }
+
+                } else {
+                    jQuery('#sticky-leftbar').css({
+                        position: 'relative',
+                        top: '8px',
+                        width: '100%',
+                        transition: '0.3s linear'
+                    });
+                    if (currentScroll === Math.trunc(socialTop)) {
+                        $('#collapseOne0').addClass('show');
+                    }
+                }
+
+            });
+        }
+    });
