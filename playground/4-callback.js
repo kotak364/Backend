@@ -1,14 +1,14 @@
 //When function pass as arguments of other function it's call callback function
 
-setTimeout(()=> {
-console.log("Two seconds are up")
-},2000)
+setTimeout(() => {
+  console.log("Two seconds are up");
+}, 2000);
 
 const names = ["Andrew", "Jean", "Jess"];
 
-const shortNames = names.filter((name)=> {
-return name.length <= 4
-})
+const shortNames = names.filter((name) => {
+  return name.length <= 4;
+});
 
 // const geocode = (address,callback) => {
 // setTimeout(()=> {
@@ -30,28 +30,25 @@ return name.length <= 4
 // const data  = geocode('Philadelphia')
 // console.log(data,"data")
 
+const geocode = (address, callback) => {
+  setTimeout(() => {
+    const data = {
+      latiude: 0,
+      longitude: 0,
+    };
+    callback(data);
+  }, 2000);
 
-const geocode = (address,callback) => {
-    setTimeout(()=> {
-        const data = {
-            latiude:0,
-            longitude:0,
-        }
-    callback(data)
-    },2000)
-    
-    // const data = {
-    //     latiude:0,
-    //     longitude:0,
-    // }
-    // return data
-    
-    }
-    geocode('Philadelphia', (data) => {
-        console.log(data, "data")
-    })
-    
-      
+  // const data = {
+  //     latiude:0,
+  //     longitude:0,
+  // }
+  // return data
+};
+geocode("Philadelphia", (data) => {
+  console.log(data, "data");
+});
+
 //Challenge
 // Goal: Mess around with the callback pattern
 // 1. Define an add function that accepts the correct arguments
@@ -59,21 +56,29 @@ const geocode = (address,callback) => {
 // 3. After 2 seconds are up, call the callback function with the sum
 // 4. Test your work!
 
-
-const add = (a,b,callback) => {
-    setTimeout(()=> {
-        sum = a + b;
-        callback(sum)
-    },2000)
-}
-
+const add = (a, b, callback) => {
+  setTimeout(() => {
+    sum = a + b;
+    callback(sum);
+  }, 2000);
+};
 
 add(1, 4, (sum) => {
-    console.log(sum) // Should print: 5
-})
+  console.log(sum); // Should print: 5
+});
 
+//callback and promise comparsion
+const doWorkCallback = (callback) => {
+  setTimeout(() => {
+    callback("This is my error", undefined);
+    callback(undefined, [1, 4, 2]);
+  }, 2000);
+};
 
+doWorkCallback((error, result) => {
+  if (error) {
+    return console.log(error);
+  }
 
-
-
-
+  console.log(result);
+});
