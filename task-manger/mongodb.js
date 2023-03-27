@@ -37,69 +37,77 @@ async function main() {
   await client.connect();
 
   // insertOne - insert one documents at a time
-  db.collection("users").insertOne(
-    {
-      name: "Jaymeen",
-      age: 27,
-    },
-    (error, r) => {
-      if (error) {
-        return console.log("Unable to insert user");
-      } else {
-        console.log(r.ops);
-      }
-    }
-  );
 
   // insertMany - insertMany documents at a time
-  db.collection("users").insertMany(
-    [
-      {
-        name: "Jaymeen",
-        age: 27,
-      },
-      {
-        name: "yash",
-        age: 27,
-      },
-      {
-        name: "Mahin",
-        age: 27,
-      },
-    ],
-    (error, r) => {
-      if (error) {
-        return console.log("Unable to insert user");
-      } else {
-        console.log(r.ops);
-      }
-    }
-  );
+  // db.collection("users").insertMany(
+  //   [
+  //     {
+  //       name: "Jaymeen",
+  //       age: 27,
+  //     },
+  //     {
+  //       name: "yash",
+  //       age: 27,
+  //     },
+  //     {
+  //       name: "Mahin",
+  //       age: 27,
+  //     },
+  //   ],
+  //   (error, r) => {
+  //     if (error) {
+  //       return console.log("Unable to insert user");
+  //     } else {
+  //       console.log(r.ops);
+  //     }
+  //   }
+  // );
 
   //Provide custome Id If you want
-  db.collection("users").insertOne(
-    { _id: id, name: "Malay", age: 27 },
-    (error, r) => {
-      if (error) {
-        return console.log("Unable to insert user");
-      } else {
-        console.log(r.ops);
-      }
-    }
-  );
+  // db.collection("users").insertOne(
+  //   { _id: id, name: "Malay", age: 27 },
+  //   (error, r) => {
+  //     if (error) {
+  //       return console.log("Unable to insert user");
+  //     } else {
+  //       console.log(r.ops);
+  //     }
+  //   }
+  // );
+
+  // const user = await db.collection("users").insertOne({
+  //   name: "Jaymeen",
+  //   age: 27,
+  // });
+  // console.log(user, "user");
+
+  // const user = await db.collection("users").insertMany([
+  //   {
+  //     name: "Jaymeen",
+  //     age: 27,
+  //   },
+  //   {
+  //     name: "yash",
+  //     age: 27,
+  //   },
+  //   {
+  //     name: "Mahin",
+  //     age: 27,
+  //   },
+  // ]);
 
   // fetch data
   //findOne return only one documents
   // const data = await db.collection("users").findOne({ name: "Maulik" });
   // const data = await db.collection("users").findOne({ name: "Maulik", age: 1 });
-  const data = await db
-    .collection("users")
-    .findOne({ _id: new ObjectId("641ee213e0cdf0b7c986137e") });
-  if (data) {
-    console.log(data, "data");
-  } else {
-    console.log("No data match");
-  }
+  // const data = await db
+  //   .collection("users")
+  //   .findOne({ _id: new ObjectId("641ee213e0cdf0b7c986137e") });
+  // if (data) {
+  //   console.log(data, "data");
+  // } else {
+  //   console.log("No data match");
+  // }
 
   //find return all matches documents
   // const data = await db.collection("users").find({ age: 27 }).toArray();
@@ -109,15 +117,74 @@ async function main() {
   // } else {
   //   console.log("No data match");
   // }
+
+  //one way of update
+  // const updateData = db.collection("users").updateOne(
+  //   {
+  //     _id: new ObjectId("641ee213e0cdf0b7c986137e"),
+  //   },
+  //   {
+  //     $set: {
+  //       name: "Jaymeen",
+  //     },
+  //   }
+  // );
+
+  // updateData
+  //   .then((result) => {
+  //     console.log(result);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+  //write update code in second way
+  // db.collection("users")
+  //   .updateOne(
+  //     {
+  //       _id: new ObjectId("641ee213e0cdf0b7c986137e"),
+  //     },
+  //     {
+  //       $inc: {
+  //         age: 1,
+  //       },
+  //     }
+  //   )
+  //   .then((result) => {
+  //     console.log(result);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+  //update many
+
+  // db.collection("users")
+  //   .updateMany(
+  //     {
+  //       name: "Andrew",
+  //     },
+  //     {
+  //       $set: {
+  //         name: "Jaymeen",
+  //       },
+  //     }
+  //   )
+  //   .then((result) => {
+  //     console.log(result);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+  // db.collection("users")
+  //   .deleteMany({ name: "Jaymeen" })
+  //   .then((result) => console.log(result, "result"))
+  //   .catch((error) => console.log(error, "error"));
+
+  db.collection("users")
+    .deleteOne({ name: "Maulik" })
+    .then((result) => console.log(result, "result"))
+    .catch((error) => console.log(error, "error"));
 }
 main().then(console.log("connection successfully")).catch(console.error);
-
-db.collection("users").insertOne({ name: "kotak" }, function (error, response) {
-  if (error) {
-    console.log("Error occurred while inserting");
-    // return
-  } else {
-    console.log("inserted record", response.ops[0]);
-    // return
-  }
-});
