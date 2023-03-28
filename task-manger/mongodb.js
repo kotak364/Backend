@@ -186,5 +186,10 @@ async function main() {
     .deleteOne({ name: "Maulik" })
     .then((result) => console.log(result, "result"))
     .catch((error) => console.log(error, "error"));
+
+
+
+
+    
 }
 main().then(console.log("connection successfully")).catch(console.error);
