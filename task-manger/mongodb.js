@@ -109,15 +109,71 @@ async function main() {
   // } else {
   //   console.log("No data match");
   // }
+
+  //update method
+  //first way
+  // const updateData = db.collection("users").updateOne(
+  //   {
+  //     _id: new ObjectId("641d9cb591f669f1336fc509"),
+  //   },
+  //   {
+  //     $set: {
+  //       name: "Rockstar",
+  //     },
+  //   }
+  // );
+
+  // updateData
+  //   .then((result) => {
+  //     console.log(result, "result");
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+  //second way
+  // db.collection("users")
+  //   .updateOne(
+  //     {
+  //       _id: new ObjectId("641d9cb591f669f1336fc509"),
+  //     },
+  //     {
+  //       $set: {
+  //         name: "Rockstar",
+  //       },
+  //     }
+  //   )
+  //   .then((result) => {
+  //     console.log(result, "result");
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+  // db.collection("users")
+  //   .updateOne(
+  //     {
+  //       _id: new ObjectId("641d9cb591f669f1336fc509"),
+  //     },
+  //     {
+  //       $inc: {
+  //         age: 1,
+  //       },
+  //     }
+  //   )
+  //   .then((result) => {
+  //     console.log(result, "result");
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+//updateMany
+
+
+
+
+
+
 }
 main().then(console.log("connection successfully")).catch(console.error);
-
-db.collection("users").insertOne({ name: "kotak" }, function (error, response) {
-  if (error) {
-    console.log("Error occurred while inserting");
-    // return
-  } else {
-    console.log("inserted record", response.ops[0]);
-    // return
-  }
-});
