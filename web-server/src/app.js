@@ -4,24 +4,28 @@ const hbs = require("hbs");
 const geocode = require("../../web-server/src/utilis/geocode");
 const forecast = require("../../web-server/src/utilis/forecast");
 
-console.log(__dirname);
+console.log(__dirname, "DIR_PATH");
 console.log(__filename);
 console.log("test console");
 
 //Online paths for Express config
 const publicDirectoryPath = path.join(__dirname, "../public");
-const viewPath = path.join(__dirname, "../templates/views");
-const partialPath = path.join(__dirname, "../templates/partials");
-console.log(publicDirectoryPath);
+console.log(publicDirectoryPath, "publicDirectoryPath");
+const viewPath = path.join(__dirname, "./templates/views");
+console.log(viewPath, "viewPath");
+const partialPath = path.join(__dirname, "./templates/partials");
+console.log(partialPath, "partialPath");
+// console.log(publicDirectoryPath);
 //to store express in one variable to access the property
 const app = express();
-console.log(publicDirectoryPath, "publicDirectoryPath");
+// console.log(publicDirectoryPath, "publicDirectoryPath");
 //setup static directory to server
 app.use(express.static(publicDirectoryPath));
 
 app.set("view engine", "hbs");
 app.set("views", viewPath);
 hbs.registerPartials(partialPath);
+
 // app.get("", (req, res) => {
 //   res.send("Hello Express");
 // });
@@ -64,7 +68,7 @@ hbs.registerPartials(partialPath);
 //   ]);
 // });
 
-// app.get("help/*", (req,res)=> {
+// app.get("/help/*", (req,res)=> {
 //   res.send('Help article not found')
 // })
 
@@ -78,8 +82,7 @@ hbs.registerPartials(partialPath);
 // });
 
 //dynamic content
-
-app.get("", (req, res) => {
+app.get("/", (req, res) => {
   res.render("index", {
     title: "Weather APP",
     name: "Andrew Mead",
@@ -104,8 +107,8 @@ app.get("/help", (req, res) => {
 // app.get("*", (req, res) => {
 //   res.render("help", {
 //     helpText: "This is some helpful text.",
-//     title:'help',
-//     name:'Jaymeen Kotak'
+//     title: "help",
+//     name: "Jaymeen Kotak",
 //   });
 // });
 
@@ -170,46 +173,3 @@ app.get("/products", (req, res) => {
 app.listen(3000, () => {
   console.log(`Server is up on port 3000`);
 });
-
-
-
- jQuery(window).on('load', function() {
-        if (jQuery('#sticky-leftbar').length) {
-            var socialTop = jQuery('#sticky-leftbar').offset().top;
-            var footerTop = jQuery('.site-footer').offset().top - 50;
-            // console.log('footerTop');
-            var site_header = jQuery("#main-nav").innerHeight() + 40;
-            // console.log(jQuery("#main-nav").innerHeight());
-            jQuery(window).scroll(function() {
-                var currentScroll = jQuery(window).scrollTop();
-                // console.log(socialTop, "socialTop");
-                console.log(currentScroll, "currentScroll");
-                console.log(footerTop, "footerTop");
-
-                if ((currentScroll >= socialTop) && (currentScroll <= footerTop)) {
-                    jQuery('#sticky-leftbar').css({
-                        position: 'sticky',
-                        top: (site_header) + 'px',
-                        width: '100%',
-                        transition: '0.3s linear'
-                    });
-                    if (currentScroll === Math.trunc(socialTop)) {
-                        $('#collapseOne0').removeClass('show');
-                       
-                    }
-
-                } else {
-                    jQuery('#sticky-leftbar').css({
-                        position: 'relative',
-                        top: '8px',
-                        width: '100%',
-                        transition: '0.3s linear'
-                    });
-                    if (currentScroll === Math.trunc(socialTop)) {
-                        $('#collapseOne0').addClass('show');
-                    }
-                }
-
-            });
-        }
-    });
