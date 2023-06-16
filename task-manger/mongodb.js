@@ -118,14 +118,15 @@ async function main() {
   //   console.log("No data match");
   // }
 
-  //one way of update
+  //update method
+  //first way
   // const updateData = db.collection("users").updateOne(
   //   {
-  //     _id: new ObjectId("641ee213e0cdf0b7c986137e"),
+  //     _id: new ObjectId("641d9cb591f669f1336fc509"),
   //   },
   //   {
   //     $set: {
-  //       name: "Jaymeen",
+  //       name: "Rockstar",
   //     },
   //   }
   // );

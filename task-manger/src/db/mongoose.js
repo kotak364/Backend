@@ -5,14 +5,14 @@ mongoose.connect("mongodb://127.0.0.1:27017/task-manager-api", {
   useUnifiedTopology: true,
 });
 
-const User = mongoose.model("User", {
-  name: {
-    type: String,
-  },
-  age: {
-    type: Number,
-  },
-});
+// const User = mongoose.model("User", {
+//   name: {
+//     type: String,
+//   },
+//   age: {
+//     type: Number,
+//   },
+// });
 
 // const me = new User({
 //   name: "Jaymeen",
@@ -37,16 +37,16 @@ const Task = mongoose.model("Task", {
   },
 });
 
-const task = new Task({
-  description: "Learn the Mongoose Library",
-  completed: true,
-});
+// const task = new Task({
+//   description: "Learn the Mongoose Library",
+//   completed: true,
+// });
 
-task
-  .save()
-  .then(() => {
-    console.log(task, "task");
-  })
-  .catch((error) => {
-    console.log(error, "errors");
-  });
+// task
+//   .save()
+//   .then(() => {
+//     console.log(task, "task");
+//   })
+//   .catch((error) => {
+//     console.log(error, "errors");
+//   });
